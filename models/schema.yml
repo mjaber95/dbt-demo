@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: raw_data_circle
+    tables:
+      - name: raw_cc_stock
+      - name: raw_cc_sales
+
+models:
+  - name: stg_raw_data_circle__raw_cc_sales
+    description: source model for sales
+  - name: stg_raw_data_circle__raw_cc_stock
+    description: source model for stock
+    columns:
+      - name: size
+        description: clothing size
+        tests:
+          - accepted_values:
+              values: ["XS", "S", "M", "L", "XL", "XXL"]
+  - name: models-merged
+    description: merged models with selected columns
